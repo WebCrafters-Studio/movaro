@@ -1,0 +1,41 @@
+{
+    "name": "wcs-starter-kit",
+    "version": "1.0.0",
+    "description": "WebCrafters Studio WordPress Starter Kit",
+    "workspaces": [
+        "wp/wp-content/themes/wcs",
+        "wp/wp-content/plugins/starter-block"
+    ],
+    "scripts": {
+        "start": "wp-env start",
+        "stop": "wp-env stop",
+        "clean": "wp-env clean",
+        "build": "npm run build --workspaces",
+        "dev": "npm run start --workspaces",
+        "format": "npm run format --workspaces",
+        "lint:css": "npm run lint:style --workspaces",
+        "lint:js": "npm run lint:js --workspaces",
+        "packages-update": "npm run packages-update --workspaces",
+        "build:theme": "npm run build --workspaces=wcs-theme",
+        "dev:theme": "npm run start --workspaces=wcs-theme",
+        "build:plugin": "npm run build --workspaces=starter-block",
+        "dev:plugin": "npm run start --workspaces=starter-block",
+        "package:theme": "node scripts/package-theme.js",
+        "package:full": "node scripts/package-full.js",
+        "package:uploads": "node scripts/package-uploads.js",
+        "import:prod": "node scripts/import-prod.js",
+        "woo:copy": "node scripts/copy-woo-templates.js"
+    },
+    "devDependencies": {
+        "@wordpress/env": "^10.0.0",
+        "@wordpress/scripts": "^30.0.0",
+        "archiver": "^7.0.0",
+        "fs-extra": "^11.0.0"
+    },
+    "dependencies": {
+        "nouislider": "^15.8.1",
+        "photoswipe": "^5.4.4",
+        "swiper": "^12.0.3",
+        "woo": "^1.0.0"
+    }
+}

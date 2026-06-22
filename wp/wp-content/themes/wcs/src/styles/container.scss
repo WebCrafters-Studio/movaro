@@ -1,0 +1,63 @@
+@use "./mixins";
+
+.container {
+  --bs-gutter-x: 40px;
+  --bs-gutter-y: 0;
+  max-width: 1320px;
+  padding: 0 calc(var(--bs-gutter-x) * 0.5);
+  margin: 0 auto;
+  @include mixins.breakpoint(xxl) {
+    --bs-gutter-x: 0;
+    max-width: 1320px;
+  }
+  @include mixins.breakpoint(xl) {
+    max-width: 1140px;
+  }
+  @include mixins.breakpoint(lg) {
+    max-width: 960px;
+  }
+  @include mixins.breakpoint(md) {
+    max-width: 720px;
+  }
+  @include mixins.breakpoint(sm) {
+    max-width: 540px;
+  }
+  @include mixins.breakpoint(xs) {
+    width: 100%;
+    --bs-gutter-x: 40px;
+  }
+}
+
+.container-lg {
+  --bs-gutter-x: 40px;
+  --bs-gutter-y: 0;
+  max-width: 1620px;
+  padding: 0 calc(var(--bs-gutter-x) * 0.5);
+  margin: 0 auto;
+  @include mixins.breakpoint(xxl) {
+    --bs-gutter-x: 0;
+    max-width: 1320px;
+  }
+  @include mixins.breakpoint(xl) {
+    max-width: 1140px;
+  }
+  @include mixins.breakpoint(lg) {
+    max-width: 960px;
+  }
+  @include mixins.breakpoint(md) {
+    max-width: 720px;
+  }
+  @include mixins.breakpoint(sm) {
+    max-width: 540px;
+  }
+  @include mixins.breakpoint(xs) {
+    width: 100%;
+    --bs-gutter-x: 40px;
+  }
+}
+
+.grid-7{
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 50px;
+}

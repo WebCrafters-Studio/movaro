@@ -1,0 +1,150 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  THEME_NAME: "wcs"
+  THEME_PATH: "wp/wp-content/themes/$THEME_NAME"
+
+# Build stage - kompilacja assetów
+build:
+  stage: build
+  image: node:18
+  cache:
+    paths:
+      - node_modules/
+      - wp/wp-content/themes/$THEME_NAME/node_modules/
+      - wp/wp-content/plugins/starter-block/node_modules/
+  script:
+    - npm ci
+    - npm run build
+    - npm run package:theme
+  artifacts:
+    paths:
+      - dist/$THEME_NAME.zip
+      - $THEME_PATH/build/
+    expire_in: 1 week
+  only:
+    - main
+    - develop
+    - tags
+
+# Deploy via FTP
+deploy:ftp:staging:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache lftp
+  script:
+    - |
+      lftp -c "
+      set ssl:verify-certificate no;
+      open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST;
+      mirror --reverse --delete --verbose --exclude .git/ --exclude node_modules/ $THEME_PATH $FTP_REMOTE_PATH/$THEME_NAME;
+      bye
+      "
+  environment:
+    name: staging
+    url: $STAGING_URL
+  only:
+    - develop
+  when: manual
+
+deploy:ftp:production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache lftp
+  script:
+    - |
+      lftp -c "
+      set ssl:verify-certificate no;
+      open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST;
+      mirror --reverse --delete --verbose --exclude .git/ --exclude node_modules/ $THEME_PATH $FTP_REMOTE_PATH/$THEME_NAME;
+      bye
+      "
+  environment:
+    name: production
+    url: $PRODUCTION_URL
+  only:
+    - main
+    - tags
+  when: manual
+
+# Deploy via SSH/SFTP
+deploy:ssh:staging:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+  script:
+    - |
+      rsync -avz --delete \
+        --exclude='.git/' \
+        --exclude='node_modules/' \
+        --exclude='*.log' \
+        $THEME_PATH/ $SSH_USER@$SSH_HOST:$SSH_REMOTE_PATH/$THEME_NAME/
+  environment:
+    name: staging
+    url: $STAGING_URL
+  only:
+    - develop
+  when: manual
+
+deploy:ssh:production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+  script:
+    - |
+      rsync -avz --delete \
+        --exclude='.git/' \
+        --exclude='node_modules/' \
+        --exclude='*.log' \
+        $THEME_PATH/ $SSH_USER@$SSH_HOST:$SSH_REMOTE_PATH/$THEME_NAME/
+  environment:
+    name: production
+    url: $PRODUCTION_URL
+  only:
+    - main
+    - tags
+  when: manual
+
+# Deploy tylko zbudowanego motywu (ZIP)
+deploy:theme:production:
+  stage: deploy
+  image: alpine:latest
+  dependencies:
+    - build
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+  script:
+    - scp dist/$THEME_NAME.zip $SSH_USER@$SSH_HOST:$SSH_REMOTE_PATH/
+    - |
+      ssh $SSH_USER@$SSH_HOST << 'EOF'
+        cd $SSH_REMOTE_PATH
+        unzip -o $THEME_NAME.zip -d wp/wp-content/themes/
+        rm $THEME_NAME.zip
+      EOF
+  environment:
+    name: production
+    url: $PRODUCTION_URL
+  only:
+    - tags
+  when: manual

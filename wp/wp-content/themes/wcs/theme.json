@@ -1,0 +1,277 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "appearanceTools": true,
+        "useRootPaddingAwareAlignments": true,
+        "color": {
+            "defaultPalette": false,
+            "palette": [
+                {
+                    "slug": "base",
+                    "color": "#ffffff",
+                    "name": "Base"
+                },
+                {
+                    "slug": "contrast",
+                    "color": "#111111",
+                    "name": "Contrast"
+                },
+                {
+                    "slug": "primary",
+                    "color": "#3b82f6",
+                    "name": "Primary"
+                },
+                {
+                    "slug": "secondary",
+                    "color": "#1e293b",
+                    "name": "Secondary"
+                },
+                {
+                    "slug": "accent",
+                    "color": "#f59e0b",
+                    "name": "Accent"
+                },
+                {
+                    "slug": "gray-100",
+                    "color": "#f3f4f6",
+                    "name": "Gray 100"
+                },
+                {
+                    "slug": "gray-200",
+                    "color": "#e5e7eb",
+                    "name": "Gray 200"
+                },
+                {
+                    "slug": "gray-800",
+                    "color": "#1f2937",
+                    "name": "Gray 800"
+                }
+            ]
+        },
+        "typography": {
+            "fluid": true,
+            "fontFamilies": [
+                {
+                    "fontFamily": "\"Inter\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+                    "slug": "body",
+                    "name": "Body (Inter)"
+                },
+                {
+                    "fontFamily": "\"Outfit\", \"Inter\", system-ui, -apple-system, sans-serif",
+                    "slug": "heading",
+                    "name": "Heading (Outfit)"
+                }
+            ],
+            "fontSizes": [
+                {
+                    "slug": "xs",
+                    "size": "0.75rem",
+                    "name": "Extra Small"
+                },
+                {
+                    "slug": "sm",
+                    "size": "0.875rem",
+                    "name": "Small"
+                },
+                {
+                    "slug": "base",
+                    "size": "1rem",
+                    "name": "Base"
+                },
+                {
+                    "slug": "lg",
+                    "size": "1.125rem",
+                    "name": "Large"
+                },
+                {
+                    "slug": "xl",
+                    "size": "1.25rem",
+                    "name": "Extra Large"
+                },
+                {
+                    "slug": "2xl",
+                    "size": "1.5rem",
+                    "name": "2XL"
+                },
+                {
+                    "slug": "3xl",
+                    "size": "1.875rem",
+                    "name": "3XL"
+                },
+                {
+                    "slug": "4xl",
+                    "size": "2.25rem",
+                    "name": "4XL"
+                },
+                {
+                    "slug": "5xl",
+                    "size": "3rem",
+                    "name": "5XL"
+                }
+            ]
+        },
+        "spacing": {
+            "spacingScale": {
+                "steps": 0
+            },
+            "spacingSizes": [
+                {
+                    "slug": "xs",
+                    "size": "clamp(0.5rem, 0.5vw, 0.75rem)",
+                    "name": "XS"
+                },
+                {
+                    "slug": "sm",
+                    "size": "clamp(0.75rem, 1vw, 1rem)",
+                    "name": "SM"
+                },
+                {
+                    "slug": "md",
+                    "size": "clamp(1rem, 1.5vw, 1.5rem)",
+                    "name": "MD"
+                },
+                {
+                    "slug": "lg",
+                    "size": "clamp(1.5rem, 2vw, 2.5rem)",
+                    "name": "LG"
+                },
+                {
+                    "slug": "xl",
+                    "size": "clamp(2.5rem, 3vw, 4rem)",
+                    "name": "XL"
+                },
+                {
+                    "slug": "2xl",
+                    "size": "clamp(4rem, 5vw, 6.5rem)",
+                    "name": "2XL"
+                },
+                {
+                    "slug": "3xl",
+                    "size": "clamp(6.5rem, 8vw, 10rem)",
+                    "name": "3XL"
+                }
+            ]
+        }
+    },
+    "styles": {
+        "color": {
+            "background": "var(--wp--preset--color--base)",
+            "text": "var(--font-color)"
+        },
+        "typography": {
+            "fontFamily": "var(--wp--preset--font-family--body)",
+            "fontSize": "var(--wp--preset--font-size--base)",
+            "lineHeight": "1.6"
+        },
+        "elements": {
+            "h1": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "700",
+                    "lineHeight": "1.1",
+                    "fontSize": "var(--wp--preset--font-size--5xl)"
+                }
+            },
+            "h2": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "700",
+                    "lineHeight": "1.2",
+                    "fontSize": "var(--wp--preset--font-size--4xl)"
+                }
+            },
+            "h3": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "600",
+                    "lineHeight": "1.2",
+                    "fontSize": "var(--wp--preset--font-size--3xl)"
+                }
+            },
+            "h4": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "600",
+                    "lineHeight": "1.3",
+                    "fontSize": "var(--wp--preset--font-size--2xl)"
+                }
+            },
+            "h5": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "600",
+                    "lineHeight": "1.3",
+                    "fontSize": "var(--wp--preset--font-size--xl)"
+                }
+            },
+            "h6": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "600",
+                    "lineHeight": "1.3",
+                    "fontSize": "var(--wp--preset--font-size--lg)"
+                }
+            },
+            "link": {
+                "color": {
+                    "text": "var(--font-color)"
+                },
+                ":hover": {
+                    "textDecoration": "none"
+                }
+            },
+            "button": {
+                "color": {
+                    "background": "var(--wp--preset--color--primary)",
+                    "text": "var(--wp--preset--color--base)"
+                },
+                "border": {
+                    "radius": "0.375rem"
+                },
+                "spacing": {
+                    "padding": {
+                        "top": "0.75rem",
+                        "bottom": "0.75rem",
+                        "left": "1.5rem",
+                        "right": "1.5rem"
+                    }
+                },
+                "typography": {
+                    "fontWeight": "600"
+                },
+                ":hover": {
+                    "color": {
+                        "background": "var(--black)"
+                    }
+                }
+            }
+        },
+        "blocks": {
+            "core/button": {
+                "border": {
+                    "radius": "0.375rem"
+                }
+            },
+            "core/site-title": {
+                "typography": {
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontWeight": "800"
+                }
+            }
+        }
+    },
+	"templateParts": [
+        {
+            "area": "header",
+            "name": "header",
+            "title": "Header"
+        },
+        {
+            "area": "footer",
+            "name": "footer",
+            "title": "Footer"
+        }
+    ]
+	
+}
