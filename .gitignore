@@ -1,7 +1,7 @@
 # WordPress Core
 /.wordpress/
 .wp-env.override.json
-# .wp-env.json
+.wp-env.json
 
 # Dependencies
 node_modules/
