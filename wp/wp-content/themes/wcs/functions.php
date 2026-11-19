@@ -17,9 +17,9 @@ require_once get_theme_file_path( 'inc/acf.php' );
 require_once get_theme_file_path( 'inc/build.php' );
 require_once get_theme_file_path( 'inc/cpt.php' );
 require_once get_theme_file_path( 'inc/menus.php' );
-require_once get_theme_file_path( 'inc/text.php' );
+// require_once get_theme_file_path( 'inc/text.php' );
 require_once get_theme_file_path( 'inc/pagination.php' );
-require_once get_theme_file_path( 'inc/woocommerce.php' );
+// require_once get_theme_file_path( 'inc/woocommerce.php' );
 require_once get_theme_file_path( 'inc/custom-enqueue.php' );
 
 add_action( 'init', function() {
