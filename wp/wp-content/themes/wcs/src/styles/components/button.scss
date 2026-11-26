@@ -1,0 +1,35 @@
+.button {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 20px 55px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 38px;
+    width: max-content;
+    border: 0;
+    cursor: pointer;
+
+    & {
+        text-decoration: none;
+        font-family: Outfit;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: -0.32px;
+        color: var(--color-fg);
+        
+    }
+
+    &--full {
+        @extend .button;
+        background-color: var(--color-primary-accent);
+    }
+
+    &--outlined {
+        @extend .button;
+        border-radius: 38px;
+        border: 1px solid #FFD338;
+    }
+}

@@ -1,0 +1,130 @@
+@use '../styles/mixins';
+
+.c-wrapper {
+    background-color: var(--color-bg-hero);
+}
+
+.c-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    z-index: 100;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    &__menu-button {
+        display: none;
+    }
+
+    &__logo {
+        grid-column: 1;
+    }
+
+    &__navigation {
+        grid-column: 2;
+        justify-self: center;
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            list-style-type: none;
+            gap: 40px;
+            padding: 0;
+
+            a {
+                color: var(--color-fg);
+                text-decoration: none;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+                letter-spacing: -0.32px;
+            }
+        }
+    }
+
+    &__cta {
+        grid-column: 3;
+    }
+
+}
+
+.l-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 100;
+    display: none;
+    background-color: var(--color-bg);
+
+    &.active {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+.c-sidebar {
+    background-color: var(--color-bg);
+    width: 375px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 15px;
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 43px;
+
+        &-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        &-button {
+            width: 22px;
+            height: 22px;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+        }
+    }
+
+    &__content {
+        margin-top: 45px;
+        gap: 32px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 15px;
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            list-style: none;
+            padding: 0;
+
+            &-item {
+                & a {
+                    color: var(--fg);
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                    letter-spacing: -0.32px;
+                }
+            }
+        }
+    }
+}
