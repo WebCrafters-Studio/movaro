@@ -1,0 +1,15 @@
+@use "../../styles/mixins.scss";
+
+.b-spacer {
+    width: 100%;
+
+    height: var(--desktop);
+
+    @include mixins.breakpoint(md) {
+        height: var(--tablet);
+    }
+        
+    @include mixins.breakpoint(xs) {
+        height: var(--mobile);
+    }
+}

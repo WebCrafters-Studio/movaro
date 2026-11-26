@@ -2,14 +2,12 @@
 
 .b-hero {
 
-    font-family: Outfit, sans-serif;
-
     &__wrapper {
         position: relative;
         background-color: var(--color-bg-hero);
         width: 100%;
         padding-top: 168px;
-        padding-bottom: 214px;
+        padding-bottom: 210px;
         border-radius: 0 0 50px 50px;
 
         @include mixins.breakpoint(sm) {
@@ -73,7 +71,7 @@
 
     &__img {
         position: absolute;
-        bottom: -4px;
+        bottom: 0;
         right: 0;
 
         @media (width <=767.98px) {
