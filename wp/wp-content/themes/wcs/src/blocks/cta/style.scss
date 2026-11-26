@@ -1,0 +1,139 @@
+@use "../../styles/mixins.scss";
+
+.b-cta {
+    margin-top: 115px;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: var(--color-bg-hero);
+    border-radius: 50px;
+    padding: 90px 0 90px 260px !important;
+
+    @include mixins.breakpoint(md) {
+        flex-direction: column;
+        padding: 45px 0 0 0;
+    }
+
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+
+        left: -140px;
+        top: 0;
+
+        width: 338px;
+        height: 530px;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="338" height="530" viewBox="0 0 338 530" fill="none"%3E%3Cpath d="M338 244.82L302.95 321.027L206.495 530L112.486 344.925H0L93.1945 139.404L156.502 0L223.341 243.758L337.457 244.82H338Z" fill="%23FFD338" fill-opacity="0.4"/%3E%3C/svg%3E');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        fill: rgba(255, 211, 56, 0.40);
+        filter: blur(100px);
+
+        @include mixins.breakpoint(md) {
+            display: none;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -75%;
+        right: 0;
+
+        width: 338px;
+        height: 530px;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="338" height="530" viewBox="0 0 338 530" fill="none"%3E%3Cpath d="M338 244.82L302.95 321.027L206.495 530L112.486 344.925H0L93.1945 139.404L156.502 0L223.341 243.758L337.457 244.82H338Z" fill="%23FFD338" fill-opacity="0.4"/%3E%3C/svg%3E');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        fill: rgba(255, 211, 56, 0.40);
+        filter: blur(100px);
+
+        @include mixins.breakpoint(md) {
+            display: none;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        @media (width <=991.98px) {
+            align-items: center;
+        }
+
+        h2 {
+            width: min(532px, 100%);
+            font-size: clamp(30px,
+                    calc((2/153) * 100vw + 25.098px),
+                    50px);
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -2px;
+
+            @include mixins.breakpoint(md) {
+                text-align: center;
+            }
+        }
+
+        h3 {
+            width: min(532px, 100%);
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.25;
+            letter-spacing: -0.72px;
+
+            @include mixins.breakpoint(md) {
+                text-align: center;
+            }
+        }
+
+        &-button {
+            @include mixins.breakpoint(md) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    &__photo {
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+        z-index: 1;
+
+        @include mixins.breakpoint(xxl) {
+            img {
+                object-position: calc(50% + 200px) 50%;
+            }
+        }
+
+
+        @include mixins.breakpoint(xl) {
+            img {
+                object-position: calc(50% + 200px) 50%;
+            }
+        }
+
+        @include mixins.breakpoint(lg) {
+            img {
+                object-position: calc(50% + 300px) 50%;
+            }
+        }
+
+        @include mixins.breakpoint(md) {
+            position: relative;
+            img {
+                object-position: 50% 50%;
+            }
+        }
+    }
+}
