@@ -83,7 +83,7 @@ get_header();
                             'price'          => $regular_price ?: (float) $wc_product->get_price(),
                             'link'           => $wc_product->get_permalink(),
                         ];
-                        ?>
+                    ?>
                         <div class="b-shop__item">
                             <?php if ($product['discount']) : ?>
                                 <span class="b-shop__item-discount">
