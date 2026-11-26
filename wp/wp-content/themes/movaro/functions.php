@@ -10,6 +10,8 @@ require_once get_theme_file_path("inc/options-pages.php");
 require_once get_theme_file_path("inc/menus.php");
 require_once get_theme_file_path("inc/forms.php");
 require_once get_theme_file_path("inc/theme-support.php");
+require_once get_theme_file_path("inc/acf.php");
+require_once get_theme_file_path("inc/build.php");
 
 // add_action('init', 'register_acf_blocks');
 
@@ -47,26 +49,26 @@ function dynamicAssetVersion(string $filePath): string
 }
 function enqueue_scripts(): void
 {
-    $themeUrl = get_template_directory_uri();
-    $themePath = get_template_directory();
+    // $themeUrl = get_template_directory_uri();
+    // $themePath = get_template_directory();
 
-    $cssFile = $themePath . '/dist/app.css';
-    $jsFile = $themePath . '/dist/app.js';
+    // $cssFile = $themePath . '/dist/app.css';
+    // $jsFile = $themePath . '/dist/app.js';
 
-    wp_enqueue_style(
-        'app',
-        $themeUrl . '/dist/app.css',
-        [],
-        dynamicAssetVersion($cssFile)
-    );
+    // wp_enqueue_style(
+    //     'app',
+    //     $themeUrl . '/dist/app.css',
+    //     [],
+    //     dynamicAssetVersion($cssFile)
+    // );
 
-    wp_enqueue_script(
-        'app',
-        $themeUrl . '/dist/app.js',
-        ["jquery"],
-        dynamicAssetVersion($jsFile),
-        true
-    );
+    // wp_enqueue_script(
+    //     'app',
+    //     $themeUrl . '/dist/app.js',
+    //     ["jquery"],
+    //     dynamicAssetVersion($jsFile),
+    //     true
+    // );
 
     /* localizing shop items ajax */
     wp_localize_script('app', 'shop_ajax', [

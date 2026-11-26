@@ -9,7 +9,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "build"),
         filename: "[name].js", // bez hashów, WP sam wersjonuje
         clean: true,
         assetModuleFilename: "assets/[name][ext]",

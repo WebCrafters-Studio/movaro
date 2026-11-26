@@ -4,7 +4,7 @@
   "description": "",
   "category": "formatting",
   "icon": "wordpress-alt",
-  "keywords": ["about", "movaro"],
+  "keywords": ["starter-block", "movaro"],
   "supports": {
     "anchor": true
   },
