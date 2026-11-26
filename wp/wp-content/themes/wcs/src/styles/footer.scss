@@ -1,0 +1,110 @@
+@use "./mixins.scss";
+
+.c-footer {
+    margin-top: 115px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 90px;
+
+    @include mixins.breakpoint(lg) {
+        gap: 50px;
+    }
+    padding: 60px 0 50px 0;
+
+    &__wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 50px 50px 0 0;
+        background-color: var(--color-fg);
+        color: var(--color-bg);
+
+        // &::before {
+        //     position: absolute;
+        //     left: 0;
+        //     bottom: 0;
+        //     background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="237" height="166" viewBox="0 0 237 166" fill="none"%3E%3Cpath d="M237 244.82L201.95 321.027L105.495 530L11.4855 344.925H-101L-7.80546 139.404L55.5016 0L122.341 243.758L236.457 244.82H237Z" fill="%23FFD338"/%3E%3C/svg%3E');
+        //     z-index: 1;
+        //     width: 338px;
+        //     height: 530px;
+        // }
+    }
+
+    a {
+        color: var(--color-bg);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: -0.28px;
+        flex-shrink: 0;
+    }
+
+    &__top {
+        display: flex;
+        flex-direction: row;
+
+        @include mixins.breakpoint(lg) {
+            flex-direction: column;
+        }
+
+        justify-content: space-between;
+        align-items: center;
+
+        &-nav {
+            @include mixins.breakpoint(lg) {
+                width: 100%;
+            }
+
+            ul {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+
+                @include mixins.breakpoint(lg) {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    margin-top: 40px;
+                    width: 100%;
+                }
+
+                list-style-type: none;
+                gap: 30px;
+
+                li:not(:first-child)::before {
+                    content: "/";
+                    margin-right: 30px;
+
+                    @include mixins.breakpoint(lg) {
+                        content: "";
+                        margin: 0;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        @include mixins.breakpoint(lg) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        &-producer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: -0.28px;
+        }
+    }
+}
