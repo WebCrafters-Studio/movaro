@@ -1,3 +1,4 @@
+import './index.scss';
 import { scrollToElementWithOffset } from "../../scripts/utils";
 
 document.addEventListener("DOMContentLoaded", () => {

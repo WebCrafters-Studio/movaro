@@ -1,3 +1,5 @@
+import './index.scss';
+
 function processWords(container) {
     container.innerHTML = container.textContent.replace(/(\S+)/g, '<span>$1</span>');
     return container.querySelectorAll('span');
