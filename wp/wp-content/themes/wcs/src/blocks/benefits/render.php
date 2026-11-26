@@ -44,7 +44,7 @@ $benefits = get_field("benefits") ?? [];
 						<?php endif; ?>
 					</div>
 					<?php if ($benefit['header']): ?>
-						<h3><?= esc_html($benefit['header'] ?? '') ?></h3>
+						<h3 class="b-benefits__card-title"><?= esc_html($benefit['header'] ?? '') ?></h3>
 					<?php endif; ?>
 					<?php if ($benefit['description']): ?>
 						<div class="b-benefits__card-desc">

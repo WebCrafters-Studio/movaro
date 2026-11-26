@@ -1,0 +1,20 @@
+{
+    "name": "wcs-theme/work-benefits",
+    "version": "0.1.0",
+    "title": "Zalety w pracy",
+    "category": "wcs-theme",
+    "icon": "smiley",
+    "description": "",
+    "keywords": [
+        "work-benefits",
+        "block"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "textdomain": "wcs-theme",
+    "script": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
+}
