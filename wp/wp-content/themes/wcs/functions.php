@@ -21,6 +21,7 @@ require_once get_theme_file_path( 'inc/menus.php' );
 require_once get_theme_file_path( 'inc/pagination.php' );
 // require_once get_theme_file_path( 'inc/woocommerce.php' );
 require_once get_theme_file_path( 'inc/custom-enqueue.php' );
+require_once get_theme_file_path('inc/forms.php');
 
 add_action( 'init', function() {
     set_error_handler( function ($errno, $errstr, $errfile, $errline) {

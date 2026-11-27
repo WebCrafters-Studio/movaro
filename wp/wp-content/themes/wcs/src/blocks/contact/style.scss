@@ -1,0 +1,247 @@
+@use "../../styles/mixins.scss";
+
+.b-contact {
+
+    margin-top: 115px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    gap: 30px;
+
+    @include mixins.breakpoint(md) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    &__content {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 130px 80px;
+
+        @include mixins.breakpoint(md) {
+            padding: 50px 30px;
+        }
+
+        background-color: var(--color-bg-hero);
+        border-radius: 35px;
+
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 195px;
+            height: 421px;
+            background-image: url('data:image/svg+xml,%3Csvg width="195" height="368" viewBox="0 0 195 368" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M203.054 194.852L175.257 255.505L98.7629 421.826L24.2077 274.525H-65L8.9088 110.951L59.1151 0L112.123 194.006L202.623 194.852H203.054Z" fill="%23FFD338" fill-opacity="0.1"/%3E%3C/svg%3E');
+            background-position: bottom;
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+
+            @include mixins.breakpoint(md) {
+                display: none;
+            }
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                font-size: clamp(30px,
+                        calc((2/153) * 100vw + 25.098px),
+                        50px);
+                font-weight: 500;
+                line-height: 1.25;
+                letter-spacing: -2px;
+                text-align: center;
+            }
+
+            h3 {
+                font-size: 22px;
+                font-weight: 300;
+                line-height: 1.25;
+                letter-spacing: -0.88px;
+                text-align: center;
+            }
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+
+            &-tile {
+                padding: 20px 55px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 40px;
+                border: 1px solid var(--color-primary-accent);
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: -0.32px;
+            }
+        }
+
+        &-signature {
+            position: absolute;
+            right: 24px;
+            bottom: 32px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            transform: rotate(-15.737deg);
+
+            @include mixins.breakpoint(md) {
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
+                inset: 0;
+                flex-direction: column-reverse;
+                align-items: center;
+                transform: rotate(0);
+            }
+
+            svg {
+                transform: rotate(15.737deg);
+
+                @include mixins.breakpoint(md) {
+                    transform: rotate(130deg);
+                    margin-left: auto;
+                }
+            }
+
+            span {
+                text-align: center;
+                font-family: 'Ms Madi';
+                font-size: 33px;
+                font-weight: 400;
+                letter-spacing: 0.66px;
+                width: 240px;
+            }
+        }
+    }
+
+    &__container {
+        padding: 30px 50px;
+
+        @include mixins.breakpoint(md) {
+            margin: 0 15px;
+            padding: 30px 15px;
+        }
+
+        border-radius: 35px;
+        border: 1px solid var(--color-accent-bg-3);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+
+        h2 {
+            font-size: 38px;
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -1.2px;
+            text-align: center;
+        }
+
+        &-input {
+            width: 100%;
+            padding: 15px 25px;
+            font-family: Outfit, sans-serif;
+            border-radius: 40px;
+            border: 1px solid var(--color-accent-bg-3);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: -0.32px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid var(--color-fg);
+            }
+        }
+
+        &-textarea {
+            width: 100%;
+            padding: 15px 25px;
+            font-family: Outfit, sans-serif;
+            border-radius: 20px;
+            border: 1px solid var(--color-accent-bg-3);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: -0.32px;
+            resize: none;
+        }
+
+        &-checkbox {
+            display: inline-flex;
+            flex-direction: row;
+            gap: 20px;
+
+            input[type=checkbox] {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                flex-shrink: 0;
+                border: 1px solid var(--color-accent-bg-3);
+                cursor: pointer;
+
+                -webkit-appearance: none;
+                appearance: none;
+
+                &:checked {
+                    background: var(--color-primary);
+                    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none"%3E%3Cpath d="M3.55171 10.3313C3.23947 10.3315 2.94001 10.1961 2.71941 9.95501L0.20307 7.21093C-0.0676898 6.91546 -0.0676898 6.43651 0.20307 6.14104C0.473916 5.84567 0.912957 5.84567 1.1838 6.14104L3.55171 8.72422L9.8162 1.89023C10.087 1.59486 10.5261 1.59486 10.7969 1.89023C11.0677 2.1857 11.0677 2.66465 10.7969 2.96012L4.38402 9.95501C4.16341 10.1961 3.86396 10.3315 3.55171 10.3313Z" fill="black"/%3E%3C/svg%3E');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    border: 1px solid var(--color-primary);
+                }
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 300;
+                letter-spacing: -0.28px;
+            }
+        }
+
+        &-response {
+            display: block !important;
+            margin: 0 !important;
+            padding: 15px 25px;
+            border: 0 !important;
+            color: var(--color-error);
+        }
+
+        &-submit {
+            @include mixins.breakpoint(xs) {
+                margin: 30px auto 0 auto;
+            }
+        }
+
+        .wpcf7-list-item {
+            margin: 0;
+        }
+
+        .wpcf7-not-valid-tip {
+            padding: 0 25px;
+        }
+    }
+}
