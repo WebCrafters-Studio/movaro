@@ -1,0 +1,105 @@
+name: Build and Deploy Theme
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - '*'
+  workflow_dispatch:
+
+env:
+  THEME_NAME: wcs
+  THEME_PATH: wp/wp-content/themes/wcs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build assets and package theme
+        run: |
+          npm run build
+          npm run package:theme
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-build
+          path: |
+            dist/${{ env.THEME_NAME }}.zip
+            ${{ env.THEME_PATH }}/build/
+          retention-days: 7
+
+  deploy-ssh-staging:
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ vars.STAGING_URL }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: theme-build
+
+      - name: Install rsync and configure SSH
+        run: |
+          sudo apt-get update && sudo apt-get install -y rsync openssh-client
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Sync theme over SSH
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_ed25519" \
+            --exclude='.git/' \
+            --exclude='node_modules/' \
+            --exclude='*.log' \
+            "${{ env.THEME_PATH }}/" "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/${{ env.THEME_NAME }}/"
+
+  deploy-theme-production-zip:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ vars.PRODUCTION_URL }}
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: theme-build
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload and extract theme ZIP
+        run: |
+          scp -i ~/.ssh/id_ed25519 "dist/${{ env.THEME_NAME }}.zip" "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/"
+          ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "cd '${{ secrets.SSH_REMOTE_PATH }}' && unzip -o '${{ env.THEME_NAME }}.zip' -d wp/wp-content/themes/ && rm '${{ env.THEME_NAME }}.zip'"
