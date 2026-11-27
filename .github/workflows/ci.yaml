@@ -40,6 +40,8 @@ jobs:
 
       - name: Deploy theme build to VPS
         run: |
+          ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "mkdir -p '${{ secrets.SSH_TARGET_PATH }}'"
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/id_ed25519" \
             --exclude=".git/" \
